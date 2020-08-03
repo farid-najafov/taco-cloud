@@ -1,4 +1,4 @@
-package tacos.bean;
+package tacos.config;
 
 import lombok.Value;
 import org.springframework.core.convert.converter.Converter;

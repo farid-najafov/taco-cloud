@@ -1,4 +1,4 @@
-package tacos.form;
+package tacos.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -13,8 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity(name = "Taco_Order")
+@Entity(name = "T_Order")
 public class Order implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -24,19 +25,19 @@ public class Order implements Serializable {
     private Date placedAt;
 
     @NotBlank(message = "Name is required")
-    private String name;
+    private String deliveryName;
 
     @NotBlank(message = "Street is required")
-    private String street;
+    private String deliveryStreet;
 
     @NotBlank(message = "City is required")
-    private String city;
+    private String deliveryCity;
 
     @NotBlank(message = "State is required")
-    private String state;
+    private String deliveryState;
 
     @NotBlank(message = "Zip is required")
-    private String zip;
+    private String deliveryZip;
 
     @CreditCardNumber(message = "Not a valid credit card number. e.g 79927398713")
     private String ccNumber;
@@ -50,6 +51,9 @@ public class Order implements Serializable {
 
     @ManyToMany(targetEntity = Taco.class)
     private List<Taco> tacos = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
 
     @PrePersist
     public void placedAt() {

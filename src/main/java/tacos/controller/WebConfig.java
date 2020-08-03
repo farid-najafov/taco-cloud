@@ -5,13 +5,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+
 @Log4j2
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    private final static String[][] mappings = {
+            {"/",      "home"},
+            {"/login", "login"}
+    };
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        log.info("GET -> /");
-        registry.addViewController("/").setViewName("home");
+        Arrays.stream(mappings).forEach(m ->
+                registry.addViewController(m[0]).setViewName(m[1])
+        );
     }
+
 }

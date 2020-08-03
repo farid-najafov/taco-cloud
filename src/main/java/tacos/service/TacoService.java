@@ -2,7 +2,7 @@ package tacos.service;
 
 import lombok.Value;
 import org.springframework.stereotype.Service;
-import tacos.form.Taco;
+import tacos.entity.Taco;
 import tacos.repo.TacoRepository;
 
 @Value

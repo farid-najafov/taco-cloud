@@ -1,4 +1,4 @@
-package tacos.form;
+package tacos.entity;
 
 import lombok.Data;
 import tacos.entity.Ingredient;

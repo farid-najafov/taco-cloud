@@ -8,8 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import tacos.entity.Ingredient;
 import tacos.entity.Ingredient.Type;
-import tacos.form.Order;
-import tacos.form.Taco;
+import tacos.entity.Order;
+import tacos.entity.Taco;
 import tacos.service.IngredientService;
 import tacos.service.OrderService;
 import tacos.service.TacoService;
@@ -24,7 +24,6 @@ import java.util.List;
 @RequestMapping("/design")
 @SessionAttributes("order")
 public class DesignTacoController {
-
 
     IngredientService ingService;
     TacoService tacoService;
