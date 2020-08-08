@@ -11,16 +11,15 @@ import java.util.Arrays;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    private final static String[][] mappings = {
-            {"/",      "home"},
-            {"/login", "login"}
-    };
+  private final static String[][] mappings = {
+      {"/", "home"},
+      {"/login", "login"}
+  };
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        Arrays.stream(mappings).forEach(m ->
-                registry.addViewController(m[0]).setViewName(m[1])
-        );
-    }
-
+  @Override
+  public void addViewControllers(ViewControllerRegistry registry) {
+    Arrays.stream(mappings).forEach(m ->
+        registry.addViewController(m[0]).setViewName(m[1])
+    );
+  }
 }

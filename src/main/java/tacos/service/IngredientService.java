@@ -1,6 +1,6 @@
 package tacos.service;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tacos.entity.Ingredient;
 import tacos.repo.IngredientRepository;
@@ -8,20 +8,20 @@ import tacos.repo.IngredientRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Value
+@AllArgsConstructor
 @Service
 public class IngredientService {
 
-    IngredientRepository ingRepo;
+  private final IngredientRepository ingRepo;
 
-    public List<Ingredient> getAll() {
-        return ingRepo.findAll();
-    }
+  public List<Ingredient> getAll() {
+    return ingRepo.findAll();
+  }
 
-    public List<Ingredient> filterByType(List<Ingredient> ingredients, Ingredient.Type type) {
-        return ingredients
-                .stream()
-                .filter(x -> x.getType().equals(type))
-                .collect(Collectors.toList());
-    }
+  public List<Ingredient> filterByType(List<Ingredient> ingredients, Ingredient.Type type) {
+    return ingredients
+        .stream()
+        .filter(x -> x.getType().equals(type))
+        .collect(Collectors.toList());
+  }
 }

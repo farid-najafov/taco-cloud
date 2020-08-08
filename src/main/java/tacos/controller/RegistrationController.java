@@ -1,29 +1,41 @@
 package tacos.controller;
-import lombok.Value;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tacos.entity.RegistrationForm;
-import tacos.repo.UserRepository;
+import tacos.service.UserService;
 
-@Value
+import javax.validation.Valid;
+
+@AllArgsConstructor
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
-  
-  UserRepository userRepo;
-  PasswordEncoder passwordEncoder;
-  
+
+  private final UserService userService;
+
+  @ModelAttribute("reg")
+  public RegistrationForm create() {
+    return new RegistrationForm();
+  }
+
   @GetMapping
   public String registerForm() {
     return "registration";
   }
 
   @PostMapping
-  public String processRegistration(RegistrationForm form) {
-    userRepo.save(form.toUser(passwordEncoder));
+  public String processRegistration(@Valid @ModelAttribute("reg") RegistrationForm form,
+                                    Errors errors) {
+
+    if (errors.hasErrors()) return "registration";
+
+    userService.saveUser(form);
     return "redirect:/login";
   }
 

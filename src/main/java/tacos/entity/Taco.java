@@ -1,7 +1,6 @@
 package tacos.entity;
 
 import lombok.Data;
-import tacos.entity.Ingredient;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,24 +12,24 @@ import java.util.List;
 @Entity
 public class Taco {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @NotNull
-    @Size(min = 5, message = "Name must be at least 5 characters long")
-    private String name;
+  @NotNull
+  @Size(min = 5, message = "Name must be at least 5 characters long")
+  private String name;
 
-    private Date createdAt;
+  private Date createdAt;
 
-    @ManyToMany(targetEntity = Ingredient.class)
-    @NotNull(message = "You must choose at least one ingredient")
-    @Size(min = 1)
-    private List<Ingredient> ingredients;
+  @ManyToMany(targetEntity = Ingredient.class)
+  @NotNull(message = "You must choose at least one ingredient")
+  @Size(min = 1)
+  private List<Ingredient> ingredients;
 
-    @PrePersist
-    void createdAt() {
-        this.createdAt = new Date();
-    }
+  @PrePersist
+  void createdAt() {
+    this.createdAt = new Date();
+  }
 
 }

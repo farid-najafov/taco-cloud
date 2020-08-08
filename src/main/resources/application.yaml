@@ -17,3 +17,11 @@ spring:
       path: /h2
       settings:
         web-allow-others: true
+
+taco:
+  orders:
+    pageSize: 10
+
+  discount:
+      codes:
+        abcdef: 10
