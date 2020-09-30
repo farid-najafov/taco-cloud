@@ -1,4 +1,4 @@
-package tacos.controller;
+package tacos.config;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +11,10 @@ import java.util.Arrays;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-  private final static String[][] mappings = {
-      {"/", "home"},
-      {"/login", "login"}
-  };
-
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    Arrays.stream(mappings).forEach(m ->
-        registry.addViewController(m[0]).setViewName(m[1])
-    );
+    registry.addViewController("/").setViewName("home");
+    registry.addViewController("/login").setViewName("login");
   }
+
 }
