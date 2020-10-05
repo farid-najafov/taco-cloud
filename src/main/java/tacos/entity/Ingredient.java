@@ -1,5 +1,6 @@
 package tacos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Ingredient {
 
   @Id

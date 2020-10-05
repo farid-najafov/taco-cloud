@@ -4,13 +4,12 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import tacos.entity.Taco;
 import tacos.rest.DesignTacoControllerRest;
 
-public class TacoResourceAssembler extends RepresentationModelAssemblerSupport<Taco, TacoResource> {
+public class  TacoResourceAssembler extends RepresentationModelAssemblerSupport<Taco, TacoResource> {
 
   public TacoResourceAssembler() {
     super(DesignTacoControllerRest.class, TacoResource.class);
   }
 
-  // this method is optional if TacoResource has default constructor
   @Override
   protected TacoResource instantiateModel(Taco entity) {
     return new TacoResource(entity);

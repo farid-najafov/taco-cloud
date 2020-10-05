@@ -24,4 +24,8 @@ public class IngredientService {
         .filter(x -> x.getType().equals(type))
         .collect(Collectors.toList());
   }
+
+  public Ingredient getById(String id) {
+    return ingRepo.getOne(id);
+  }
 }
